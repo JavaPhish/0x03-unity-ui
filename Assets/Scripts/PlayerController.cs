@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	// Player health, can be affected by traps
 	public int health = 5;
 
-	// Controls the score text 
+	// Controls the score text s
 	public Text scoreText;
 
 	// Use this for initialization
