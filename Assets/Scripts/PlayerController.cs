@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -17,10 +18,18 @@ public class PlayerController : MonoBehaviour {
 	// Player health, can be affected by traps
 	public int health = 5;
 
+	// Controls the score text 
+	public Text scoreText;
+
 	// Use this for initialization
 	void Start () {
 		// Initialize the rigidbody on our player (Using this for movement :)
 		player = GetComponent<Rigidbody>();
+	}
+
+	// Updates the UI text to show the players current score
+	void SetScoreText() {
+		scoreText.text = "Score: " + score;
 	}
 
 	// When this object contacts a collider with "onTrigger" enabled
@@ -32,7 +41,8 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Pickup")
 		{
 			score += 1;
-			Debug.Log("Score: " + score);
+			// Debug.Log("Score: " + score);
+			SetScoreText();
 			Destroy(other.gameObject);
 		}
 
