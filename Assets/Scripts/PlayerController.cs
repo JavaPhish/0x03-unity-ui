@@ -24,10 +24,16 @@ public class PlayerController : MonoBehaviour {
 	// Text to control the health section of UI
 	public Text healthText;
 
+	// background color for win loss
+	public GameObject WinLossObject;
+	private Image WinLossImg;
+	public Text WinLossTxt;
+
 	// Use this for initialization
 	void Start () {
 		// Initialize the rigidbody on our player (Using this for movement :)
 		player = GetComponent<Rigidbody>();
+		WinLossImg = WinLossObject.GetComponent("Image") as Image;
 	}
 
 	// Updates the UI text to show the players current score
@@ -68,10 +74,14 @@ public class PlayerController : MonoBehaviour {
 			SetHealthText();
 		}
 
-		// Self explainatory...
+		// Win condition
 		if (other.tag == "Goal")
 		{
-			Debug.Log("You win!");
+			WinLossObject.SetActive(true);
+			WinLossImg.color = Color.green;
+			WinLossTxt.color = Color.black;
+			WinLossTxt.text = "You Win!";
+			//Debug.Log("You win!");
 		}
 	}
 
