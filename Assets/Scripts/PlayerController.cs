@@ -86,13 +86,27 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		// Loss condition, shows game over and resets
 		if (health == 0)
 		{
+			WinLossObject.SetActive(true);
+			WinLossImg.color = Color.red;
+			WinLossTxt.color = Color.white;
+			WinLossTxt.text = "Game Over!";
+
 			health = 5;
 			score = 0;
-			Debug.Log("Game Over!");
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			//Debug.Log("Game Over!");
+			StartCoroutine(LoadScene(3f));
 		}
+	}
+	
+	// Waits n seconds and resets the scene
+	IEnumerator LoadScene(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		health = 5;
+		score = 0;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	// FixedUpdate is called consistently on time
