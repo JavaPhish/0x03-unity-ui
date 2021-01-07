@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log("Game Over!");
 			StartCoroutine(LoadScene(3f));
 		}
+
+		if (Input.GetKey(KeyCode.Escape)) {
+			SceneManager.LoadScene("menu");
+		}
 	}
 	
 	// Waits n seconds and resets the scene
