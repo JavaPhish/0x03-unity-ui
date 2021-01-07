@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour {
 	// Controls the score text s
 	public Text scoreText;
 
+	// Text to control the health section of UI
+	public Text healthText;
+
 	// Use this for initialization
 	void Start () {
 		// Initialize the rigidbody on our player (Using this for movement :)
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour {
 	// Updates the UI text to show the players current score
 	void SetScoreText() {
 		scoreText.text = "Score: " + score;
+	}
+
+	// Updates the health text to show users health
+	void SetHealthText() {
+		healthText.text = "Health: " + health;
 	}
 
 	// When this object contacts a collider with "onTrigger" enabled
@@ -56,7 +64,8 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Trap")
 		{
 			health -= 1;
-			Debug.Log("Health: " + health);
+			//Debug.Log("Health: " + health);
+			SetHealthText();
 		}
 
 		// Self explainatory...
